@@ -168,7 +168,7 @@ resource "aws_iam_role_policy_attachment" "ec2_container_registry" {
 # 9. EKS Node Group
 resource "aws_eks_node_group" "eks_node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
-  node_group_name = "example-node-group"
+  node_group_name = "vamsi-eks-nodegroup"
   node_role_arn   = aws_iam_role.eks_node_role.arn
   subnet_ids      = [aws_subnet.eks_subnet_a.id, aws_subnet.eks_subnet_b.id]
 
@@ -178,7 +178,7 @@ resource "aws_eks_node_group" "eks_node_group" {
     min_size     = 1
   }
 
-  instance_types = ["t3.medium"]
+  instance_types = ["t3.small"]
 
   depends_on = [
     aws_iam_role_policy_attachment.eks_worker_node,
